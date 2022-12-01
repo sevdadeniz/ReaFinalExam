@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using EntityLayer
+@model List<TaskTable>
+
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Order Status</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th> Task ID </th>
+                                <th> Task Title </th>
+                                <th> Task Description</th>
+                                <th> Task Owner</th>
+                                <th> Task Status </th>
+                                <th> Comment ID </th>
+                            </tr>
+                        </thead>
+                         @{
+                            foreach (var item in Model)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td> @item.taskId </td>
+                                        <td> @item.title </td>
+                                        <td> @item.description </td>
+                                        <td> @item.owner </td>
+                                           <td> @item.status </td>
+                                    <td> @item.commentId </td>
+                                        <td>
+                                            <a asp-controller="Task" asp-action="Update" asp-route-id="@item.taskId" class="badge badge-outline-warning">Update</a>
+                                        <a asp-controller="Task" asp-action="Delete" asp-route-id="@item.taskId" class="badge badge-outline-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                            }
+                         }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
